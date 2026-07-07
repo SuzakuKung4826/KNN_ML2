@@ -20,13 +20,19 @@ st.set_page_config(
 )
 
 # ============================================================
-# CUSTOM CSS
+# CUSTOM CSS  (สีตัวอักษรถูกกำหนดชัดเจนทุกจุด กันปัญหา dark/light theme ชนกัน)
 # ============================================================
 st.markdown("""
 <style>
-    .main {
-        background-color: #f7f9fc;
+    /* พื้นหลังหลักของแอป */
+    .stApp {
+        background-color: #f7f9fc !important;
     }
+    .main {
+        background-color: #f7f9fc !important;
+    }
+
+    /* หัวข้อใหญ่ */
     .big-title {
         font-size: 2.2rem;
         font-weight: 800;
@@ -38,21 +44,38 @@ st.markdown("""
     }
     .sub-title {
         text-align: center;
-        color: #6c757d;
+        color: #6c757d !important;
         font-size: 1rem;
         margin-bottom: 1.5rem;
     }
+
+    /* ทำให้ตัวอักษรทั่วไปในหน้าอ่านง่าย (บังคับสีเข้มบนพื้นอ่อน) */
+    .stApp, .stApp p, .stApp span, .stApp label, .stApp div,
+    .stMarkdown, h1, h2, h3, h4, h5, h6 {
+        color: #262730 !important;
+    }
+
+    /* การ์ด Metric */
     div[data-testid="stMetric"] {
-        background-color: white;
+        background-color: #ffffff !important;
         border: 1px solid #eee;
         padding: 15px;
         border-radius: 15px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
+    div[data-testid="stMetricValue"] {
+        color: #ff4757 !important;
+        font-weight: 800 !important;
+    }
+    div[data-testid="stMetricLabel"] {
+        color: #262730 !important;
+    }
+
+    /* ปุ่ม */
     .stButton>button {
         width: 100%;
         background: linear-gradient(90deg, #ff4b4b, #ff7676);
-        color: white;
+        color: #ffffff !important;
         font-weight: 700;
         border: none;
         border-radius: 12px;
@@ -64,24 +87,57 @@ st.markdown("""
         transform: scale(1.02);
         box-shadow: 0 4px 12px rgba(255,75,75,0.4);
     }
+    .stButton>button p {
+        color: #ffffff !important;
+    }
+
+    /* การ์ดผลลัพธ์ - ตัวอักษรขาวชัดเจนบนพื้นสีเข้ม */
+    .result-card-positive, .result-card-positive h2, .result-card-positive p {
+        color: #ffffff !important;
+    }
     .result-card-positive {
         background: linear-gradient(135deg, #ff6b6b, #ff4757);
-        color: white;
         padding: 25px;
         border-radius: 20px;
         text-align: center;
         box-shadow: 0 4px 15px rgba(255,71,87,0.4);
     }
+    .result-card-negative, .result-card-negative h2, .result-card-negative p {
+        color: #ffffff !important;
+    }
     .result-card-negative {
         background: linear-gradient(135deg, #2ed573, #1abc9c);
-        color: white;
         padding: 25px;
         border-radius: 20px;
         text-align: center;
         box-shadow: 0 4px 15px rgba(46,213,115,0.4);
     }
+
+    /* Sidebar */
     section[data-testid="stSidebar"] {
-        background-color: #fff0f0;
+        background-color: #fff0f0 !important;
+    }
+    section[data-testid="stSidebar"] * {
+        color: #262730 !important;
+    }
+
+    /* กล่อง html_7 / html_8 (ตัวอักษรขาวบนพื้นฟ้า) */
+    .info-box h4, .info-box h5 {
+        color: #ffffff !important;
+    }
+
+    /* Tabs */
+    button[data-baseweb="tab"] {
+        color: #262730 !important;
+        font-weight: 600;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #ff4757 !important;
+    }
+
+    /* ตาราง dataframe ให้พื้นขาวชัดเจน */
+    div[data-testid="stDataFrame"] {
+        background-color: #ffffff !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -175,7 +231,7 @@ with tab2:
 # ---------------- TAB 3: PREDICTION ----------------
 with tab3:
     st.markdown("""
-    <div style="background-color:#33beff;padding:15px;border-radius:15px;border-style:solid;border-color:black">
+    <div class="info-box" style="background-color:#33beff;padding:15px;border-radius:15px;border-style:solid;border-color:black">
     <center><h4>🩺 กรอกข้อมูลโรคหัวใจสำหรับทำนาย</h4></center>
     </div>
     """, unsafe_allow_html=True)
